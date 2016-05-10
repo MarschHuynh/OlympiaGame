@@ -84,8 +84,11 @@
             // 
             this.tb_password.Location = new System.Drawing.Point(195, 127);
             this.tb_password.Name = "tb_password";
+            this.tb_password.PasswordChar = '*';
             this.tb_password.Size = new System.Drawing.Size(162, 21);
             this.tb_password.TabIndex = 7;
+            this.tb_password.TextChanged += new System.EventHandler(this.tb_password_TextChanged);
+            this.tb_password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_password_KeyPress);
             // 
             // btn_dangnhap
             // 
@@ -136,10 +139,10 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
-            // Start
+            // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,7 +156,7 @@
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Start";
+            this.Name = "StartForm";
             this.Text = "Start";
             this.Load += new System.EventHandler(this.Start_Load);
             this.menuStrip1.ResumeLayout(false);

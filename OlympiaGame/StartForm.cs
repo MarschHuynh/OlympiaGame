@@ -33,11 +33,33 @@ namespace OlympiaGame
 
         }
 
+        private void loadServer()
+        {
+            Hide();
+            ServerForm server = new ServerForm();
+            server.Show();
+        }
+
         private void btn_dangnhap_Click(object sender, EventArgs e)
         {
-            if (tb_password.Text == "servser" && tb_password.Text == "server"){
-                ServerForm server = new ServerForm();
-                server.Show();
+            if (tb_password.Text == "s" && tb_password.Text == "s"){
+                loadServer();
+            }
+        }
+
+        private void tb_password_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_password_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                if (tb_password.Text == "s" && tb_password.Text == "s")
+                {
+                    loadServer();
+                }
             }
         }
     }
