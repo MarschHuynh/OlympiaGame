@@ -15,6 +15,7 @@ namespace DataTableObject
         public String Ten { get; set; }
         public String NoiDung { get; set; }
         public String LinhVuc { get; set; }
+        public String DapAn { get; set; }
         public int ID_Goi { get; set; }
 
         [ForeignKey("ID_Goi")]

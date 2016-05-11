@@ -24,5 +24,19 @@ namespace DatabaseAccess
             return result;
         }
 
+        public void TaoGoiCauHoi(String name)
+        {
+            OlympiaDataContext db = new OlympiaDataContext();
+            db.GoiCauHois.Add(new GoiCauHoi(name));
+            db.SaveChanges();
+        }
+
+        public void XoaGoiCauHoiById(int id)
+        {
+            OlympiaDataContext db = new OlympiaDataContext();
+            GoiCauHoi result =(GoiCauHoi) db.GoiCauHois.Where(gch => gch.ID_Goi == id).Single();
+            db.GoiCauHois.Remove(result);
+            db.SaveChanges();
+        }
     }
 }

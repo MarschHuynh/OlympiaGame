@@ -22,8 +22,8 @@ namespace DataTableObject
         {
             protected override void Seed(OlympiaDataContext context)
             {
-                context.GoiCauHois.Add(new GoiCauHoi { Ten = "Mặc định" });
-                context.SaveChanges();
+                //context.GoiCauHois.Add(new GoiCauHoi { Ten = "Mặc định" });
+                //context.SaveChanges();
             }
         }
     }

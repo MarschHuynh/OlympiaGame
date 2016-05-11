@@ -10,22 +10,34 @@ namespace BusinessLogic
 {
     public class CauHoiBUS
     {
+        CauHoiDAO cauHoiDAO;
+        public CauHoiBUS()
+        {
+            cauHoiDAO = new CauHoiDAO();
+        }
         public List<CauHoi> GetALLCauHoi()
         {
-            CauHoiDAO ch = new CauHoiDAO();
-            return ch.GetAllCauHoi();
+            //CauHoiDAO ch = new CauHoiDAO();
+            return cauHoiDAO.GetAllCauHoi();
         }
 
         public List<CauHoi> GetCauHoiByIdGoi(int id)
         {
-            OlympiaDataContext db = new OlympiaDataContext();
+            return cauHoiDAO.GetCauHoiByIdGoi(id);
+        }
 
-            var result = from ch in db.CauHois
-                         join gch in db.GoiCauHois on ch.ID_Goi equals gch.ID_Goi
-                         where ch.ID_Goi == id
-                         select ch;
+        public void TaoCauHoi(String ten,String noiDung,String linhVuc,int id_goi)
+        {
+            cauHoiDAO.TaoCauHoi(ten, noiDung, linhVuc, id_goi);
+        }
 
-            return result.ToList();
+        public void XoaCauHoiById(int id)
+        {
+            cauHoiDAO.XoaCauHoiById(id);
+        }
+        public void CapNhatCauHoi(int id,String noiDung, String linhVuc, int id_Goi,String dapAn)
+        {
+            cauHoiDAO.CapNhatCauHoi(id, noiDung, linhVuc, id_Goi, dapAn);
         }
     }
 }
