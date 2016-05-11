@@ -14,16 +14,19 @@ namespace DataTableObject
         public int ID_CauHoi { get; set; }
         public String Ten { get; set; }
         public String NoiDung { get; set; }
+        public String LinhVuc { get; set; }
         public int ID_Goi { get; set; }
+
         [ForeignKey("ID_Goi")]
 
         public virtual GoiCauHoi GoiCauHoi { set; get; }//Liên kết 1-1
         public CauHoi() { }
-        public CauHoi(String ten, String noiDung, int id_goi)
+        public CauHoi(String ten, String noiDung,String linhvuc, int id_goi)
         {
             Ten = ten;
             NoiDung = noiDung;
             ID_Goi = id_goi;
+            LinhVuc = linhvuc;
         }
     }
 }

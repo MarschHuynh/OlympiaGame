@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using DataTableObject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,15 +48,29 @@ namespace OlympiaGame
 
         }
 
+        private void FillDataGridViewCauHoi(List<CauHoi> listCauHoi)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("STT");
+            dt.Columns.Add("Câu hỏi");
+            dt.Columns.Add("Lĩnh vực");
+
+            foreach(var item in listCauHoi)
+            {
+                dt.Rows.Add(item.ID_CauHoi, item.NoiDung);
+            }
+
+            dataGridView_CauHoi.DataSource = dt;
+
+            dataGridView_CauHoi.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView_CauHoi.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+        }
+
         private void listView_GoiCauHoi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //listView_CauHoi.Clear();
+            //dataGridView_CauHoi.Rows.Clear();
             CauHoiBUS chBUS = new CauHoiBUS();
-            foreach (var item in chBUS.GetCauHoiByIdGoi(1))
-            {
-                listView_CauHoi.Items.Add(item.Ten+":"+item.NoiDung);
-            }
-            
+            //FillDataGridViewCauHoi(chBUS.GetCauHoiByIdGoi(1));
         }
 
 

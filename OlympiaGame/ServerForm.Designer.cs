@@ -38,7 +38,6 @@
             this.btn_BatDau_VCNV = new DevExpress.XtraEditors.SimpleButton();
             this.tab_KhoiDong = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.listView_CauHoi = new System.Windows.Forms.ListView();
             this.listView_GoiCauHoi = new System.Windows.Forms.ListView();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.button3 = new System.Windows.Forms.Button();
@@ -51,6 +50,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_BatDau_KD = new DevExpress.XtraEditors.SimpleButton();
             this.groupThongTin = new DevExpress.XtraEditors.GroupControl();
+            this.dataGridView_CauHoi = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.group_Control)).BeginInit();
             this.group_Control.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tab_Game)).BeginInit();
@@ -66,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupThongTin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CauHoi)).BeginInit();
             this.SuspendLayout();
             // 
             // group_Control
@@ -171,26 +172,13 @@
             this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl2.Controls.Add(this.listView_CauHoi);
+            this.groupControl2.Controls.Add(this.dataGridView_CauHoi);
             this.groupControl2.Controls.Add(this.listView_GoiCauHoi);
             this.groupControl2.Location = new System.Drawing.Point(4, 4);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(601, 194);
             this.groupControl2.TabIndex = 4;
             this.groupControl2.Text = "Câu hỏi";
-            // 
-            // listView_CauHoi
-            // 
-            this.listView_CauHoi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView_CauHoi.FullRowSelect = true;
-            this.listView_CauHoi.Location = new System.Drawing.Point(184, 24);
-            this.listView_CauHoi.Name = "listView_CauHoi";
-            this.listView_CauHoi.Size = new System.Drawing.Size(412, 165);
-            this.listView_CauHoi.TabIndex = 1;
-            this.listView_CauHoi.UseCompatibleStateImageBehavior = false;
-            this.listView_CauHoi.View = System.Windows.Forms.View.List;
             // 
             // listView_GoiCauHoi
             // 
@@ -322,6 +310,21 @@
             this.groupThongTin.TabIndex = 7;
             this.groupThongTin.Text = "Thông tin thí sinh";
             // 
+            // dataGridView_CauHoi
+            // 
+            this.dataGridView_CauHoi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_CauHoi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_CauHoi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_CauHoi.Location = new System.Drawing.Point(184, 24);
+            this.dataGridView_CauHoi.Name = "dataGridView_CauHoi";
+            this.dataGridView_CauHoi.RowHeadersVisible = false;
+            this.dataGridView_CauHoi.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dataGridView_CauHoi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_CauHoi.Size = new System.Drawing.Size(412, 165);
+            this.dataGridView_CauHoi.TabIndex = 1;
+            // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,6 +351,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupThongTin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CauHoi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,7 +380,7 @@
         private System.Windows.Forms.Button button3;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private System.Windows.Forms.ListView listView_GoiCauHoi;
-        private System.Windows.Forms.ListView listView_CauHoi;
+        private System.Windows.Forms.DataGridView dataGridView_CauHoi;
     }
 }
 
