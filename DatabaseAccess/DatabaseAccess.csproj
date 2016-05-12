@@ -52,6 +52,7 @@
     <Compile Include="CauHoiDAO.cs" />
     <Compile Include="GoiCauHoiDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataTableObject\DataTableObject.csproj">

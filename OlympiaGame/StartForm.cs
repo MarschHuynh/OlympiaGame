@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using BusinessLogic;
 
 namespace OlympiaGame
 {
@@ -40,11 +41,24 @@ namespace OlympiaGame
             server.Show();
         }
 
-        private void btn_dangnhap_Click(object sender, EventArgs e)
+        public void DangNhap()
         {
-            if (tb_password.Text == "s" && tb_password.Text == "s"){
+            int status = new UserBUS().Authentication(tb_username.Text, tb_password.Text);
+            if (status == 0)
+            {
+                MessageBox.Show("Tài khoản này không tồn tại", "Lỗi");
+            } 
+            else if (status==1){
+                MessageBox.Show("Mật khẩu sai, vui lòng thử lại", "Lỗi");
+            } else if (status == 2)
+            {
                 loadServer();
             }
+        }
+
+        private void btn_dangnhap_Click(object sender, EventArgs e)
+        {
+            DangNhap();
         }
 
         private void tb_password_TextChanged(object sender, EventArgs e)
@@ -56,10 +70,7 @@ namespace OlympiaGame
         {
             if (e.KeyChar == (char)13)
             {
-                if (tb_password.Text == "s" && tb_password.Text == "s")
-                {
-                    loadServer();
-                }
+                DangNhap();
             }
         }
     }

@@ -11,6 +11,7 @@ namespace DataTableObject
     {
         public DbSet<CauHoi> CauHois { get; set; }
         public DbSet<GoiCauHoi> GoiCauHois { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public OlympiaDataContext()
             :base("OlympiaDB")
@@ -22,8 +23,11 @@ namespace DataTableObject
         {
             protected override void Seed(OlympiaDataContext context)
             {
-                //context.GoiCauHois.Add(new GoiCauHoi { Ten = "Mặc định" });
-                //context.SaveChanges();
+                context.GoiCauHois.Add(new GoiCauHoi { Ten = "Gói Khởi Động 1" });
+                context.GoiCauHois.Add(new GoiCauHoi { Ten = "Gói Tăng Tốc 1" });
+                context.GoiCauHois.Add(new GoiCauHoi { Ten = "Gói Vượt Chướng Ngại Vật 1" });
+                context.GoiCauHois.Add(new GoiCauHoi { Ten = "Gói Về Đích 40 1" });
+                context.SaveChanges();
             }
         }
     }

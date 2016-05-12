@@ -52,6 +52,7 @@
     <Compile Include="CauHoiBUS.cs" />
     <Compile Include="GoiCauHoiBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserBUS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj">
