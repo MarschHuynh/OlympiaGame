@@ -27,20 +27,37 @@ namespace DatabaseAccess
             return result.ToList();
         }
 
-        public void TaoCauHoi(String ten,String noiDung,String linhVuc,int id_goi)
-        {
-            OlympiaDataContext db = new OlympiaDataContext();
-            db.CauHois.Add(new CauHoi(ten,noiDung,linhVuc,id_goi));
-        }
+        //public void TaoCauHoi(String ten,String noiDung,String linhVuc,int id_goi)
+        //{
+        //    OlympiaDataContext db = new OlympiaDataContext();
+        //    db.CauHois.Add(new CauHoi(ten,noiDung,linhVuc,id_goi));
+        //    db.SaveChanges();
+        //}
 
-        public void CapNhatCauHoi(int id,String noiDung,String linhVuc,int id_Goi,String dapAn)
+        public void CapNhatOrThemCauHoi(int id,String ten,String noiDung,String linhVuc,int id_Goi,String dapAn)
         {
             OlympiaDataContext db = new OlympiaDataContext();
-            var result = (CauHoi)db.CauHois.Where(ch => ch.ID_CauHoi == id).Single();
-            result.LinhVuc = linhVuc;
-            result.NoiDung = noiDung;
-            result.DapAn = dapAn;
-            result.ID_Goi = id_Goi;
+            CauHoi result = null;
+            try
+            {
+                result = (CauHoi)db.CauHois.Where(ch => ch.ID_CauHoi == id).Single();
+            } catch (Exception e)
+            {
+                Console.Write("ERROR:", e.ToString());
+            }
+            
+            if (result != null)
+            {
+                result.Ten = ten;
+                result.LinhVuc = linhVuc;
+                result.NoiDung = noiDung;
+                result.DapAn = dapAn;
+                result.ID_Goi = id_Goi;
+            } else
+            {
+                db.CauHois.Add(new CauHoi(ten,noiDung,linhVuc,id_Goi,dapAn));
+            }
+            
             db.SaveChanges();
         }
 
@@ -49,6 +66,7 @@ namespace DatabaseAccess
             OlympiaDataContext db = new OlympiaDataContext();
             CauHoi result = (CauHoi)db.CauHois.Where(ch => ch.ID_CauHoi == id).Single();
             db.CauHois.Remove(result);
+            db.SaveChanges();
         }
 
     }

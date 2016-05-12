@@ -26,18 +26,18 @@ namespace BusinessLogic
             return cauHoiDAO.GetCauHoiByIdGoi(id);
         }
 
-        public void TaoCauHoi(String ten,String noiDung,String linhVuc,int id_goi)
-        {
-            cauHoiDAO.TaoCauHoi(ten, noiDung, linhVuc, id_goi);
-        }
+        //public void TaoCauHoi(String ten,String noiDung,String linhVuc,int id_goi)
+        //{
+        //    cauHoiDAO.TaoCauHoi(ten, noiDung, linhVuc, id_goi);
+        //}
 
         public void XoaCauHoiById(int id)
         {
             cauHoiDAO.XoaCauHoiById(id);
         }
-        public void CapNhatCauHoi(int id,String noiDung, String linhVuc, int id_Goi,String dapAn)
+        public void CapNhatOrThemCauHoi(int id,String ten,String noiDung, String linhVuc, int id_Goi,String dapAn)
         {
-            cauHoiDAO.CapNhatCauHoi(id, noiDung, linhVuc, id_Goi, dapAn);
+            cauHoiDAO.CapNhatOrThemCauHoi(id, ten, noiDung, linhVuc, id_Goi, dapAn);
         }
     }
 }

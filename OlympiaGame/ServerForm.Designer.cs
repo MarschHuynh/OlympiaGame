@@ -225,7 +225,8 @@
             this.btn_addCauHoi.Name = "btn_addCauHoi";
             this.btn_addCauHoi.Size = new System.Drawing.Size(70, 23);
             this.btn_addCauHoi.TabIndex = 5;
-            this.btn_addCauHoi.Text = "Xóa";
+            this.btn_addCauHoi.Text = "Thêm";
+            this.btn_addCauHoi.Click += new System.EventHandler(this.btn_addCauHoi_Click);
             // 
             // btn_deleteCauHoi
             // 
@@ -235,6 +236,7 @@
             this.btn_deleteCauHoi.Size = new System.Drawing.Size(75, 23);
             this.btn_deleteCauHoi.TabIndex = 4;
             this.btn_deleteCauHoi.Text = "Xóa";
+            this.btn_deleteCauHoi.Click += new System.EventHandler(this.btn_deleteCauHoi_Click);
             // 
             // btn_deleteNhom
             // 

@@ -16,5 +16,10 @@ namespace OlympiaGame
         {
             InitializeComponent();
         }
+
+        private void PleaseWaitForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

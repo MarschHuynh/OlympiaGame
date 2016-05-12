@@ -22,12 +22,13 @@ namespace DataTableObject
 
         public virtual GoiCauHoi GoiCauHoi { set; get; }//Liên kết 1-1
         public CauHoi() { }
-        public CauHoi(String ten, String noiDung,String linhvuc, int id_goi)
+        public CauHoi(String ten, String noiDung,String linhvuc, int id_goi,String dapAn)
         {
             Ten = ten;
             NoiDung = noiDung;
             ID_Goi = id_goi;
             LinhVuc = linhvuc;
+            DapAn = dapAn;
         }
     }
 }

@@ -66,6 +66,7 @@ namespace OlympiaGame
             DataTable dt = new DataTable();
             dt.Columns.Add("id");
             dt.Columns.Add("STT");
+            dt.Columns.Add("Tên");
             dt.Columns.Add("Câu hỏi");
             dt.Columns.Add("Lĩnh vực");
             dt.Columns.Add("Đáp án");
@@ -73,29 +74,39 @@ namespace OlympiaGame
             int i = 0;
             foreach(var item in listCauHoi)
             {
-                dt.Rows.Add(item.ID_CauHoi,++i, item.NoiDung,item.LinhVuc,item.DapAn,item.ID_Goi);
+                dt.Rows.Add(item.ID_CauHoi,++i,item.Ten, item.NoiDung,item.LinhVuc,item.DapAn,item.ID_Goi);
             }
 
             dataGridView_CauHoi.DataSource = dt;
 
             dataGridView_CauHoi.Columns[0].Visible = false;
-            dataGridView_CauHoi.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView_CauHoi.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView_CauHoi.Columns[4].Visible = false;
+            dataGridView_CauHoi.Columns[1].Visible = false;
+            dataGridView_CauHoi.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView_CauHoi.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView_CauHoi.Columns[5].Visible = false;
+            dataGridView_CauHoi.Columns[6].Visible = false;
         }
 
         private void dataGridView_GoiCauHoi_SelectionChanged(object sender, EventArgs e)
         {
+            loadDataGrid();
+        }
+
+        private void loadDataGrid()
+        {
             CauHoiBUS chBUS = new CauHoiBUS();
-            if (dataGridView_GoiCauHoi.CurrentRow!=null)
+            if (dataGridView_GoiCauHoi.CurrentRow != null)
                 FillDataGridViewCauHoi(chBUS.GetCauHoiByIdGoi(Convert.ToInt32(dataGridView_GoiCauHoi.CurrentRow.Cells[0].Value.ToString())));
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SuaCauHoiForm suaForm = new SuaCauHoiForm(dataGridView_CauHoi.CurrentRow);
-            suaForm.Show();
+            if (dataGridView_CauHoi.CurrentRow != null)
+            {
+                SuaCauHoiForm suaForm = new SuaCauHoiForm(dataGridView_CauHoi.CurrentRow);
+                suaForm.reload += new SuaCauHoiForm.Finish(loadDataGrid);
+                suaForm.Show();
+            }
         }
 
         private void btn_deleteNhom_Click(object sender, EventArgs e)
@@ -103,8 +114,6 @@ namespace OlympiaGame
             PleaseWaitForm pleaseWait = new PleaseWaitForm();
             pleaseWait.Show();
             new GoiCauHoiBUS().XoaGoiCauHoi(Convert.ToInt32(dataGridView_GoiCauHoi.CurrentRow.Cells[0].Value.ToString()));
-            dataGridView_GoiCauHoi.Refresh();
-            dataGridView_GoiCauHoi.Parent.Refresh();
             pleaseWait.Close();
         }
 
@@ -112,6 +121,22 @@ namespace OlympiaGame
         {
             ThemGoiCauHoiForm themgch = new ThemGoiCauHoiForm();
             themgch.Show();
+        }
+
+        private void btn_addCauHoi_Click(object sender, EventArgs e)
+        {
+            SuaCauHoiForm suaCauHoi = new SuaCauHoiForm();
+            suaCauHoi.reload += new SuaCauHoiForm.Finish(loadDataGrid);
+            suaCauHoi.Show();
+        }
+
+        private void btn_deleteCauHoi_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_CauHoi.CurrentRow != null)
+            {
+                new CauHoiBUS().XoaCauHoiById(Convert.ToInt32(dataGridView_CauHoi.CurrentRow.Cells[0].Value.ToString()));
+                loadDataGrid();
+            }
         }
     }
 }
