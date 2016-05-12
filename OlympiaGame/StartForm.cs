@@ -53,7 +53,17 @@ namespace OlympiaGame
             } else if (status == 2)
             {
                 loadServer();
+            } else if (status == 4)
+            {
+                loadClientThiSinh();
             }
+        }
+
+        public void loadClientThiSinh()
+        {
+            Hide();
+            ClientThiSinhForm thisinhForm = new ClientThiSinhForm(tb_username.Text);
+            thisinhForm.Show();
         }
 
         private void btn_dangnhap_Click(object sender, EventArgs e)

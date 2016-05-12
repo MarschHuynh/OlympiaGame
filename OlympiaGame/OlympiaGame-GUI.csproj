@@ -85,6 +85,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientThiSinhForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientThiSinhForm.Designer.cs">
+      <DependentUpon>ClientThiSinhForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PleaseWaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     <Compile Include="ThemGoiCauHoiForm.Designer.cs">
       <DependentUpon>ThemGoiCauHoiForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ClientThiSinhForm.resx">
+      <DependentUpon>ClientThiSinhForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PleaseWaitForm.resx">
       <DependentUpon>PleaseWaitForm.cs</DependentUpon>
     </EmbeddedResource>

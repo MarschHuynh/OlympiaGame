@@ -103,11 +103,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(210, 251);
+            this.label3.Location = new System.Drawing.Point(155, 251);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 13);
+            this.label3.Size = new System.Drawing.Size(246, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Copyright @MarschHuynh";
+            this.label3.Text = "Copyright @MarschHuynh (htt.13tclc@gmail.com)";
             // 
             // menuStrip1
             // 

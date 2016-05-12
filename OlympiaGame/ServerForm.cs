@@ -6,16 +6,38 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace OlympiaGame
 {
     public partial class ServerForm : DevExpress.XtraEditors.XtraForm
     {
+        class ThiSinh {
+            public String ID { get; set; }
+            public String Ten { get; set; }
+            public String clientID { get; set; }
+            public int Diem { get; set; }
+            public int Kq_KD { get; set; }
+            public String Username { get; set; }
+
+            public ThiSinh(String username,String clientID)
+            {
+                this.Username = username;
+                this.clientID = clientID;
+            }
+        }
+        String MQTT_BROKER_ADDRESS = "192.168.1.6";
+        static Dictionary<String,ThiSinh> thiSinhD;
+
         public ServerForm()
         {
             InitializeComponent();
+            setupMQTT();
+            thiSinhD = new Dictionary<String, ThiSinh>();
         }
 
 
@@ -31,8 +53,32 @@ namespace OlympiaGame
 
         private void tabNavigationPage1_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
+        // BEGINMQTT
+        private void setupMQTT()
+        {
+            // create client instance
+            MqttClient client = new MqttClient(IPAddress.Parse(MQTT_BROKER_ADDRESS));
+
+            // register to message received
+            client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
+
+            string clientId = Guid.NewGuid().ToString();
+            client.Connect(clientId);
+
+            // subscribe to the topic "/home/temperature" with QoS 2
+            client.Subscribe(new string[] { "/thiSinhLogin" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+        }
+
+        static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        {
+            MqttClient client = (MqttClient)sender;
+            String msg = Encoding.UTF8.GetString(e.Message);
+            String[] agrs = msg.Split('|');
+            thiSinhD.Add(agrs[0], new ThiSinh(agrs[0],agrs[1]));
+        }
+        // ENDMQTT
 
         private void ServerForm_Load(object sender, EventArgs e)
         {
@@ -87,6 +133,22 @@ namespace OlympiaGame
             dataGridView_CauHoi.Columns[6].Visible = false;
         }
 
+        private void FillDataGridViewThiSinh(List<CauHoi> listCauHoi)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Tên");
+            dt.Columns.Add("Điểm");
+            int i = 0;
+            foreach (var item in thiSinhD)
+            {
+                dt.Rows.Add(new UserBUS().GetUserByUserName(item.Value.Ten),item.Value.Diem);
+            }
+            dataGridView_CauHoi.DataSource = dt;
+
+            dataGridView_CauHoi.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView_CauHoi.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+        }
+
         private void dataGridView_GoiCauHoi_SelectionChanged(object sender, EventArgs e)
         {
             loadDataGrid();
@@ -137,6 +199,16 @@ namespace OlympiaGame
                 new CauHoiBUS().XoaCauHoiById(Convert.ToInt32(dataGridView_CauHoi.CurrentRow.Cells[0].Value.ToString()));
                 loadDataGrid();
             }
+        }
+
+        private void ServerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void dataGridView_ThiSinh_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

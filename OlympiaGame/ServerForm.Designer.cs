@@ -56,6 +56,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_BatDau_KD = new DevExpress.XtraEditors.SimpleButton();
             this.groupThongTin = new DevExpress.XtraEditors.GroupControl();
+            this.dataGridView_ThiSinh = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.group_Control)).BeginInit();
             this.group_Control.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tab_Game)).BeginInit();
@@ -71,6 +72,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupThongTin)).BeginInit();
+            this.groupThongTin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ThiSinh)).BeginInit();
             this.SuspendLayout();
             // 
             // group_Control
@@ -403,11 +406,22 @@
             this.groupThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupThongTin.AutoSize = true;
-            this.groupThongTin.Location = new System.Drawing.Point(655, 13);
+            this.groupThongTin.Controls.Add(this.dataGridView_ThiSinh);
+            this.groupThongTin.Location = new System.Drawing.Point(650, 13);
             this.groupThongTin.Name = "groupThongTin";
-            this.groupThongTin.Size = new System.Drawing.Size(248, 609);
+            this.groupThongTin.Size = new System.Drawing.Size(253, 609);
             this.groupThongTin.TabIndex = 7;
             this.groupThongTin.Text = "Thông tin thí sinh";
+            // 
+            // dataGridView_ThiSinh
+            // 
+            this.dataGridView_ThiSinh.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView_ThiSinh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_ThiSinh.Location = new System.Drawing.Point(6, 23);
+            this.dataGridView_ThiSinh.Name = "dataGridView_ThiSinh";
+            this.dataGridView_ThiSinh.Size = new System.Drawing.Size(240, 174);
+            this.dataGridView_ThiSinh.TabIndex = 0;
+            this.dataGridView_ThiSinh.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ThiSinh_CellContentClick);
             // 
             // ServerForm
             // 
@@ -419,6 +433,7 @@
             this.Name = "ServerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Olympia";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ServerForm_FormClosed);
             this.Load += new System.EventHandler(this.ServerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.group_Control)).EndInit();
             this.group_Control.ResumeLayout(false);
@@ -436,6 +451,8 @@
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupThongTin)).EndInit();
+            this.groupThongTin.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ThiSinh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,6 +487,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private System.Windows.Forms.ComboBox comboBox_GoiCauHoi;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridView dataGridView_ThiSinh;
     }
 }
 
