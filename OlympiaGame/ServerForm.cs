@@ -107,5 +107,11 @@ namespace OlympiaGame
             dataGridView_GoiCauHoi.Parent.Refresh();
             pleaseWait.Close();
         }
+
+        private void btn_addNhom_Click(object sender, EventArgs e)
+        {
+            ThemGoiCauHoiForm themgch = new ThemGoiCauHoiForm();
+            themgch.Show();
+        }
     }
 }

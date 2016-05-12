@@ -111,6 +111,12 @@
     <Compile Include="SuaCauHoiForm.Designer.cs">
       <DependentUpon>SuaCauHoiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThemGoiCauHoiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemGoiCauHoiForm.Designer.cs">
+      <DependentUpon>ThemGoiCauHoiForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="PleaseWaitForm.resx">
       <DependentUpon>PleaseWaitForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SuaCauHoiForm.resx">
       <DependentUpon>SuaCauHoiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemGoiCauHoiForm.resx">
+      <DependentUpon>ThemGoiCauHoiForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

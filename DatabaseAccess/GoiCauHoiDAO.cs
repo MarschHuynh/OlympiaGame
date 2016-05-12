@@ -18,10 +18,13 @@ namespace DatabaseAccess
         public GoiCauHoi GetGoiCauHoiByTen(String ten)
         {
             OlympiaDataContext db = new OlympiaDataContext();
-            var result = (from gch in db.GoiCauHois
+            var result = from gch in db.GoiCauHois
                       where gch.Ten == ten
-                      select gch).Single();
-            return result;
+                      select gch;
+            if (result.ToArray().Length != 0)
+                return result.ToArray()[0];
+            else
+                return null;
         }
 
         public void TaoGoiCauHoi(String name)

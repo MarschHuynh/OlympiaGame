@@ -254,6 +254,7 @@
             this.btn_addNhom.Size = new System.Drawing.Size(70, 23);
             this.btn_addNhom.TabIndex = 2;
             this.btn_addNhom.Text = "Thêm";
+            this.btn_addNhom.Click += new System.EventHandler(this.btn_addNhom_Click);
             // 
             // dataGridView_CauHoi
             // 
