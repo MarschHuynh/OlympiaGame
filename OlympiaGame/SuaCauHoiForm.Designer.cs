@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.rtb_CauHoi = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,6 +41,14 @@
             this.btn_Thoat = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tb_ten = new System.Windows.Forms.TextBox();
+            this.errorProvider_ten = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_cauhoi = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_dapan = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_gch = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ten)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_cauhoi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dapan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_gch)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -61,6 +70,7 @@
             this.rtb_CauHoi.Size = new System.Drawing.Size(514, 53);
             this.rtb_CauHoi.TabIndex = 1;
             this.rtb_CauHoi.Text = "";
+            this.rtb_CauHoi.Validating += new System.ComponentModel.CancelEventHandler(this.rtb_CauHoi_Validating);
             // 
             // label2
             // 
@@ -78,6 +88,7 @@
             this.tb_DapAn.Name = "tb_DapAn";
             this.tb_DapAn.Size = new System.Drawing.Size(514, 21);
             this.tb_DapAn.TabIndex = 3;
+            this.tb_DapAn.Validating += new System.ComponentModel.CancelEventHandler(this.tb_DapAn_Validating);
             // 
             // label3
             // 
@@ -91,6 +102,7 @@
             // 
             // comboBox_linhVuc
             // 
+            this.comboBox_linhVuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_linhVuc.FormattingEnabled = true;
             this.comboBox_linhVuc.Location = new System.Drawing.Point(79, 192);
             this.comboBox_linhVuc.Name = "comboBox_linhVuc";
@@ -99,11 +111,13 @@
             // 
             // comboBox_GoiCauHoi
             // 
+            this.comboBox_GoiCauHoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_GoiCauHoi.FormattingEnabled = true;
             this.comboBox_GoiCauHoi.Location = new System.Drawing.Point(355, 192);
             this.comboBox_GoiCauHoi.Name = "comboBox_GoiCauHoi";
             this.comboBox_GoiCauHoi.Size = new System.Drawing.Size(234, 21);
             this.comboBox_GoiCauHoi.TabIndex = 7;
+            this.comboBox_GoiCauHoi.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_GoiCauHoi_Validating);
             // 
             // label4
             // 
@@ -117,7 +131,7 @@
             // 
             // btn_OK
             // 
-            this.btn_OK.Location = new System.Drawing.Point(433, 225);
+            this.btn_OK.Location = new System.Drawing.Point(431, 225);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 23);
             this.btn_OK.TabIndex = 8;
@@ -151,12 +165,29 @@
             this.tb_ten.Name = "tb_ten";
             this.tb_ten.Size = new System.Drawing.Size(514, 21);
             this.tb_ten.TabIndex = 11;
+            this.tb_ten.Validating += new System.ComponentModel.CancelEventHandler(this.tb_ten_Validating);
+            // 
+            // errorProvider_ten
+            // 
+            this.errorProvider_ten.ContainerControl = this;
+            // 
+            // errorProvider_cauhoi
+            // 
+            this.errorProvider_cauhoi.ContainerControl = this;
+            // 
+            // errorProvider_dapan
+            // 
+            this.errorProvider_dapan.ContainerControl = this;
+            // 
+            // errorProvider_gch
+            // 
+            this.errorProvider_gch.ContainerControl = this;
             // 
             // SuaCauHoiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 297);
+            this.ClientSize = new System.Drawing.Size(625, 260);
             this.Controls.Add(this.tb_ten);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btn_Thoat);
@@ -169,9 +200,15 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.rtb_CauHoi);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SuaCauHoiForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sửa Câu Hỏi";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ten)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_cauhoi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dapan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_gch)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +228,9 @@
         private System.Windows.Forms.Button btn_Thoat;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tb_ten;
+        private System.Windows.Forms.ErrorProvider errorProvider_ten;
+        private System.Windows.Forms.ErrorProvider errorProvider_cauhoi;
+        private System.Windows.Forms.ErrorProvider errorProvider_dapan;
+        private System.Windows.Forms.ErrorProvider errorProvider_gch;
     }
 }
