@@ -205,6 +205,7 @@
             this.Name = "SuaCauHoiForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sửa Câu Hỏi";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ten)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_cauhoi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dapan)).EndInit();

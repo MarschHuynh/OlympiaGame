@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,44 +18,56 @@ namespace OlympiaGame
     {
         String MQTT_BROKER_ADDRESS = "192.168.1.6";
         String userName;
-        String topic2Serer;
+        MqttController mqttController;
         public ClientThiSinhForm(String username)
         {
             InitializeComponent();
             userName = username;
-            setupMQTT();
+            mqttController = new MqttController(MQTT_BROKER_ADDRESS,username);
+            mqttController.Publish("/thiSinhLogin", userName + '|' + mqttController.clientID);
+            mqttController.Subscribe("/ten/" + username);
+            mqttController.Subscribe("/diem/" + username);
+            mqttController.Subscribe("/socaudung/" + username);
+            mqttController.Subscribe("/cauhoi/" + username);
+            mqttController.Subscribe("/test" + mqttController.clientID);
+            mqttController.thongTin += new MqttController.ThongTin(CapNhatThongTin);
+            mqttController.test += new MqttController.Test(TestMqtt);
         }
 
-        // BEGINMQTT
-        private void setupMQTT()
+        private void ClientThiSinhForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // create client instance
-            MqttClient client = new MqttClient(IPAddress.Parse(MQTT_BROKER_ADDRESS));
-
-            // register to message received
-            client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
-
-            string clientId = Guid.NewGuid().ToString();
-            client.Connect(clientId);
-
-            // subscribe to the topic "/home/temperature" with QoS 2
-            client.Subscribe(new string[] { "/server" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-
-            topic2Serer = "/thisinh/" + clientId;
-            client.Subscribe(new string[] { "/thisinh/"+clientId }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-
-            client.Publish("/server", Encoding.UTF8.GetBytes(topic2Serer));
+            mqttController.Publish("/logout", userName);
+            mqttController.Disconnect();
+            System.Windows.Forms.Application.Exit();
         }
 
-        static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        private void CapNhatThongTin(String key,String msg)
         {
-            Console.WriteLine("Msg:" + Encoding.UTF8.GetString(e.Message));
+            if (key.Equals("Ten"))
+            {
+                this.Invoke(new MethodInvoker(delegate { lb_ten.Text = msg; }));
+                Console.Write("Ten:" + msg);
+            }
+            else if (key.Equals("Diem"))
+            {
+                this.Invoke(new MethodInvoker(delegate { lb_Diem.Text = msg; }));
+                Console.Write("Diem:" + msg);
+            }
+            else if (key.Equals("CauHoi"))
+            {
+                this.Invoke(new MethodInvoker(delegate { rtb_CauHoi.Text = msg; }));
+                Console.Write("Diem:" + msg);
+            }
+            else if (key.Equals("SoCauDung"))
+            {
+                this.Invoke(new MethodInvoker(delegate { lb_soCauDung.Text = msg; }));
+                Console.Write("Diem:" + msg);
+            }
         }
-        // ENDMQTT
 
-        private void ClientThiSinhForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void TestMqtt(String msg)
         {
-            Application.Exit();
+            Console.WriteLine("MSG:" + msg);
         }
     }
 }

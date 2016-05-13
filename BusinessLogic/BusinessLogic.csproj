@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="M2Mqtt.Net, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\M2Mqtt.4.3.0.0\lib\net45\M2Mqtt.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CauHoiBUS.cs" />
     <Compile Include="GoiCauHoiBUS.cs" />
+    <Compile Include="MqttController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBUS.cs" />
   </ItemGroup>

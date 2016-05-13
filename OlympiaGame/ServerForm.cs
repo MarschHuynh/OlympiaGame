@@ -24,22 +24,96 @@ namespace OlympiaGame
             public int Kq_KD { get; set; }
             public String Username { get; set; }
 
-            public ThiSinh(String username,String clientID)
+            public ThiSinh(String username,String clientID,String ten)
             {
                 this.Username = username;
                 this.clientID = clientID;
+                this.Ten = ten;
             }
         }
+
+        class KhoiDongGame
+        {
+            public String Username
+            {
+                get; set;
+            }
+            public int Diem
+            {
+                get; set;
+            }
+            int SocauHoi;
+            int CauHoiHienTai;
+            List<CauHoi> CacCauHoiHienTai;
+
+            public KhoiDongGame(String user,int diem,int sch,List<CauHoi> listch)
+            {
+                this.CauHoiHienTai = -1;
+                this.Username = user;
+                this.Diem = diem;
+                this.CacCauHoiHienTai = listch;
+                this.SocauHoi = sch;
+            }
+
+            public CauHoi CauHoiTiepTheo()
+            {
+                this.CauHoiHienTai++;
+                if (CauHoiHienTai < SocauHoi)
+                    return this.CacCauHoiHienTai.ToArray()[this.CauHoiHienTai];
+                else
+                    return null;
+            }
+
+            public void TraLoiDung()
+            {
+                if (CauHoiHienTai <= SocauHoi)
+                    this.Diem += 10;
+            }
+        }
+
         String MQTT_BROKER_ADDRESS = "192.168.1.6";
-        static Dictionary<String,ThiSinh> thiSinhD;
+        private Dictionary<String,ThiSinh> thiSinhD;
+        private Dictionary<String, String> topicD;
+        KhoiDongGame KhoiDong;
+        MqttController mqttControl;
 
         public ServerForm()
         {
             InitializeComponent();
-            setupMQTT();
+            mqttControl = new MqttController(MQTT_BROKER_ADDRESS,"server");
+            mqttControl.newlogin += new MqttController.NewLogin(ThiSinhMoiDangNhap);
+            mqttControl.test += new MqttController.Test(testMqtt);
+            mqttControl.logOut += new MqttController.LogOut(ThisinhThoat);
             thiSinhD = new Dictionary<String, ThiSinh>();
+            topicD = new Dictionary<String, String>();
+            mqttControl.Subscribe("/thiSinhLogin");
+            mqttControl.Subscribe("/thongTin");
+            mqttControl.Subscribe("/test");
+            mqttControl.Subscribe("/logout");
         }
 
+        private void ThiSinhMoiDangNhap(String username,String clientID)
+        {
+            Console.WriteLine("User: " + username);
+            thiSinhD.Add(username,new ThiSinh(username, clientID, new UserBUS().GetUserByUserName(username).Ten));
+            mqttControl.Publish("/ten/" + username, thiSinhD[username].Ten);
+            FillDataGridViewThiSinh();
+        }
+
+        private void ThisinhThoat(String username)
+        {
+            this.Invoke(new MethodInvoker(delegate
+            {
+                thiSinhD.Remove(username);
+            }));
+            Console.WriteLine("LOGOUT: " + username);
+            FillDataGridViewThiSinh();
+        }
+
+        private void testMqtt(String msg)
+        {
+            Console.WriteLine("MES: " + msg);
+        }
 
         private void groupControl1_Paint(object sender, PaintEventArgs e)
         {
@@ -55,30 +129,6 @@ namespace OlympiaGame
         {
             
         }
-        // BEGINMQTT
-        private void setupMQTT()
-        {
-            // create client instance
-            MqttClient client = new MqttClient(IPAddress.Parse(MQTT_BROKER_ADDRESS));
-
-            // register to message received
-            client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
-
-            string clientId = Guid.NewGuid().ToString();
-            client.Connect(clientId);
-
-            // subscribe to the topic "/home/temperature" with QoS 2
-            client.Subscribe(new string[] { "/thiSinhLogin" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-        }
-
-        static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
-        {
-            MqttClient client = (MqttClient)sender;
-            String msg = Encoding.UTF8.GetString(e.Message);
-            String[] agrs = msg.Split('|');
-            thiSinhD.Add(agrs[0], new ThiSinh(agrs[0],agrs[1]));
-        }
-        // ENDMQTT
 
         private void ServerForm_Load(object sender, EventArgs e)
         {
@@ -104,7 +154,9 @@ namespace OlympiaGame
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            SendCauHoiTiepTheo();
+            KhoiDong.TraLoiDung();
+            mqttControl.Publish("/diem/" + KhoiDong.Username,KhoiDong.Diem.ToString());
         }
 
         private void FillDataGridViewCauHoi(List<CauHoi> listCauHoi)
@@ -133,20 +185,32 @@ namespace OlympiaGame
             dataGridView_CauHoi.Columns[6].Visible = false;
         }
 
-        private void FillDataGridViewThiSinh(List<CauHoi> listCauHoi)
+        void FillDataGridViewThiSinh()
         {
+            this.Invoke(new MethodInvoker(delegate
+            {
+                cb_ThiSinh.Items.Clear();
+            }));
             DataTable dt = new DataTable();
             dt.Columns.Add("Tên");
             dt.Columns.Add("Điểm");
-            int i = 0;
             foreach (var item in thiSinhD)
             {
-                dt.Rows.Add(new UserBUS().GetUserByUserName(item.Value.Ten),item.Value.Diem);
+                dt.Rows.Add(item.Value.Ten,item.Value.Diem);
+                this.Invoke(new MethodInvoker(delegate
+                {
+                    cb_ThiSinh.Items.Add(item.Value.Ten);
+                }));
+                
             }
-            dataGridView_CauHoi.DataSource = dt;
+            this.Invoke(new MethodInvoker(delegate {
+                dataGridView_ThiSinh.DataSource = dt;
+                dataGridView_ThiSinh.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView_ThiSinh.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            }));
+            
 
-            dataGridView_CauHoi.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView_CauHoi.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+           
         }
 
         private void dataGridView_GoiCauHoi_SelectionChanged(object sender, EventArgs e)
@@ -167,7 +231,7 @@ namespace OlympiaGame
             {
                 SuaCauHoiForm suaForm = new SuaCauHoiForm(dataGridView_CauHoi.CurrentRow);
                 suaForm.reload += new SuaCauHoiForm.Finish(loadDataGrid);
-                suaForm.Show();
+                suaForm.ShowDialog();
             }
         }
 
@@ -201,14 +265,49 @@ namespace OlympiaGame
             }
         }
 
-        private void ServerForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void ServerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            mqttControl.Disconnect();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void dataGridView_ThiSinh_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void comboBox_GoiCauHoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void SendCauHoiTiepTheo()
+        {
+            CauHoi next = KhoiDong.CauHoiTiepTheo();
+            if (next != null){
+                rtb_CauHoi.Text = next.NoiDung+ "\nĐáp Án:"+next.DapAn;
+                mqttControl.Publish("/cauhoi/" + KhoiDong.Username, next.NoiDung);
+            } else {
+                rtb_CauHoi.Text = "HẾT RỒI";
+            }
+        }
+        private void btn_BatDau_KD_Click(object sender, EventArgs e)
+        {
+            PleaseWaitForm please = new PleaseWaitForm();
+            please.Show();
+            please.Refresh();
+            String username = cb_ThiSinh.SelectedIndex==-1? "" : thiSinhD.ToArray()[cb_ThiSinh.SelectedIndex].Key;
+            Console.WriteLine(username);
+            if (!String.IsNullOrEmpty(comboBox_GoiCauHoi.Text) && !String.IsNullOrEmpty(cb_ThiSinh.Text))
+            {
+                List<CauHoi> listCauHoi = new CauHoiBUS().GetCauHoiByIdGoi(new GoiCauHoiBUS().GetGoiCauHoiByTen(comboBox_GoiCauHoi.Text).ID_Goi);
+                KhoiDong = new KhoiDongGame(username, 0, listCauHoi.Count, listCauHoi);
+                mqttControl.Publish("/diem/" + KhoiDong.Username, KhoiDong.Diem.ToString());
+                SendCauHoiTiepTheo();
+            }
+            btn_Dung.Enabled = true;
+            btn_Sai.Enabled = true;
+            btn_BoQua.Enabled = true;
+            please.Close();
         }
     }
 }

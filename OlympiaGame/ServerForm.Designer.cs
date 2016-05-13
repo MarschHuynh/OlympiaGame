@@ -46,17 +46,18 @@
             this.btn_addNhom = new DevExpress.XtraEditors.SimpleButton();
             this.dataGridView_CauHoi = new System.Windows.Forms.DataGridView();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cb_ThiSinh = new System.Windows.Forms.ComboBox();
             this.comboBox_GoiCauHoi = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btn_BoQua = new System.Windows.Forms.Button();
+            this.btn_Sai = new System.Windows.Forms.Button();
+            this.btn_Dung = new System.Windows.Forms.Button();
+            this.rtb_CauHoi = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_BatDau_KD = new DevExpress.XtraEditors.SimpleButton();
             this.groupThongTin = new DevExpress.XtraEditors.GroupControl();
             this.dataGridView_ThiSinh = new System.Windows.Forms.DataGridView();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.group_Control)).BeginInit();
             this.group_Control.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tab_Game)).BeginInit();
@@ -74,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupThongTin)).BeginInit();
             this.groupThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ThiSinh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.SuspendLayout();
             // 
             // group_Control
@@ -285,27 +287,27 @@
             // 
             this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl1.Controls.Add(this.comboBox1);
+            this.groupControl1.Controls.Add(this.cb_ThiSinh);
             this.groupControl1.Controls.Add(this.comboBox_GoiCauHoi);
-            this.groupControl1.Controls.Add(this.button3);
-            this.groupControl1.Controls.Add(this.button2);
-            this.groupControl1.Controls.Add(this.button1);
-            this.groupControl1.Controls.Add(this.richTextBox1);
+            this.groupControl1.Controls.Add(this.btn_BoQua);
+            this.groupControl1.Controls.Add(this.btn_Sai);
+            this.groupControl1.Controls.Add(this.btn_Dung);
+            this.groupControl1.Controls.Add(this.rtb_CauHoi);
             this.groupControl1.Controls.Add(this.label2);
             this.groupControl1.Controls.Add(this.label1);
             this.groupControl1.Location = new System.Drawing.Point(4, 350);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(601, 154);
             this.groupControl1.TabIndex = 3;
-            this.groupControl1.Text = "groupControl1";
+            this.groupControl1.Text = "Điều khiển";
             // 
-            // comboBox1
+            // cb_ThiSinh
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(58, 23);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(246, 21);
-            this.comboBox1.TabIndex = 9;
+            this.cb_ThiSinh.FormattingEnabled = true;
+            this.cb_ThiSinh.Location = new System.Drawing.Point(58, 23);
+            this.cb_ThiSinh.Name = "cb_ThiSinh";
+            this.cb_ThiSinh.Size = new System.Drawing.Size(246, 21);
+            this.cb_ThiSinh.TabIndex = 9;
             // 
             // comboBox_GoiCauHoi
             // 
@@ -314,64 +316,68 @@
             this.comboBox_GoiCauHoi.Name = "comboBox_GoiCauHoi";
             this.comboBox_GoiCauHoi.Size = new System.Drawing.Size(216, 21);
             this.comboBox_GoiCauHoi.TabIndex = 8;
+            this.comboBox_GoiCauHoi.SelectedIndexChanged += new System.EventHandler(this.comboBox_GoiCauHoi_SelectedIndexChanged);
             // 
-            // button3
+            // btn_BoQua
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.Silver;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(488, 117);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Bỏ qua";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btn_BoQua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_BoQua.BackColor = System.Drawing.Color.Silver;
+            this.btn_BoQua.Enabled = false;
+            this.btn_BoQua.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btn_BoQua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_BoQua.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btn_BoQua.ForeColor = System.Drawing.Color.White;
+            this.btn_BoQua.Location = new System.Drawing.Point(488, 117);
+            this.btn_BoQua.Name = "btn_BoQua";
+            this.btn_BoQua.Size = new System.Drawing.Size(108, 23);
+            this.btn_BoQua.TabIndex = 7;
+            this.btn_BoQua.Text = "Bỏ qua";
+            this.btn_BoQua.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btn_Sai
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.IndianRed;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(488, 88);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Sai";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btn_Sai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Sai.BackColor = System.Drawing.Color.IndianRed;
+            this.btn_Sai.Enabled = false;
+            this.btn_Sai.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btn_Sai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Sai.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btn_Sai.ForeColor = System.Drawing.Color.White;
+            this.btn_Sai.Location = new System.Drawing.Point(488, 88);
+            this.btn_Sai.Name = "btn_Sai";
+            this.btn_Sai.Size = new System.Drawing.Size(108, 23);
+            this.btn_Sai.TabIndex = 6;
+            this.btn_Sai.Text = "Sai";
+            this.btn_Sai.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btn_Dung
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.Green;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(488, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Đúng";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_Dung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Dung.BackColor = System.Drawing.Color.Green;
+            this.btn_Dung.Enabled = false;
+            this.btn_Dung.FlatAppearance.BorderSize = 0;
+            this.btn_Dung.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Dung.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btn_Dung.ForeColor = System.Drawing.Color.White;
+            this.btn_Dung.Location = new System.Drawing.Point(488, 58);
+            this.btn_Dung.Name = "btn_Dung";
+            this.btn_Dung.Size = new System.Drawing.Size(108, 23);
+            this.btn_Dung.TabIndex = 5;
+            this.btn_Dung.Text = "Đúng";
+            this.btn_Dung.UseVisualStyleBackColor = false;
+            this.btn_Dung.Click += new System.EventHandler(this.button1_Click);
             // 
-            // richTextBox1
+            // rtb_CauHoi
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.rtb_CauHoi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Location = new System.Drawing.Point(6, 50);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(475, 99);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.rtb_CauHoi.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtb_CauHoi.Location = new System.Drawing.Point(6, 50);
+            this.rtb_CauHoi.Name = "rtb_CauHoi";
+            this.rtb_CauHoi.Size = new System.Drawing.Size(475, 99);
+            this.rtb_CauHoi.TabIndex = 4;
+            this.rtb_CauHoi.Text = "";
             // 
             // label2
             // 
@@ -400,40 +406,61 @@
             this.btn_BatDau_KD.Size = new System.Drawing.Size(602, 23);
             this.btn_BatDau_KD.TabIndex = 0;
             this.btn_BatDau_KD.Text = "Bắt Đầu";
+            this.btn_BatDau_KD.Click += new System.EventHandler(this.btn_BatDau_KD_Click);
             // 
             // groupThongTin
             // 
-            this.groupThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupThongTin.AutoSize = true;
             this.groupThongTin.Controls.Add(this.dataGridView_ThiSinh);
-            this.groupThongTin.Location = new System.Drawing.Point(650, 13);
+            this.groupThongTin.Location = new System.Drawing.Point(656, 13);
             this.groupThongTin.Name = "groupThongTin";
-            this.groupThongTin.Size = new System.Drawing.Size(253, 609);
+            this.groupThongTin.Size = new System.Drawing.Size(247, 201);
             this.groupThongTin.TabIndex = 7;
             this.groupThongTin.Text = "Thông tin thí sinh";
             // 
             // dataGridView_ThiSinh
             // 
+            this.dataGridView_ThiSinh.AllowUserToAddRows = false;
+            this.dataGridView_ThiSinh.AllowUserToDeleteRows = false;
+            this.dataGridView_ThiSinh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_ThiSinh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_ThiSinh.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView_ThiSinh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ThiSinh.Location = new System.Drawing.Point(6, 23);
+            this.dataGridView_ThiSinh.Location = new System.Drawing.Point(10, 23);
+            this.dataGridView_ThiSinh.MultiSelect = false;
             this.dataGridView_ThiSinh.Name = "dataGridView_ThiSinh";
-            this.dataGridView_ThiSinh.Size = new System.Drawing.Size(240, 174);
+            this.dataGridView_ThiSinh.ReadOnly = true;
+            this.dataGridView_ThiSinh.RowHeadersVisible = false;
+            this.dataGridView_ThiSinh.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dataGridView_ThiSinh.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_ThiSinh.Size = new System.Drawing.Size(228, 170);
             this.dataGridView_ThiSinh.TabIndex = 0;
             this.dataGridView_ThiSinh.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ThiSinh_CellContentClick);
+            // 
+            // groupControl3
+            // 
+            this.groupControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl3.Location = new System.Drawing.Point(656, 221);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(247, 401);
+            this.groupControl3.TabIndex = 8;
+            this.groupControl3.Text = "Cài Đặt";
             // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 634);
+            this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.groupThongTin);
             this.Controls.Add(this.group_Control);
             this.Name = "ServerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Olympia";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ServerForm_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerForm_FormClosing);
             this.Load += new System.EventHandler(this.ServerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.group_Control)).EndInit();
             this.group_Control.ResumeLayout(false);
@@ -453,6 +480,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupThongTin)).EndInit();
             this.groupThongTin.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ThiSinh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,10 +501,10 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RichTextBox rtb_CauHoi;
+        private System.Windows.Forms.Button btn_Sai;
+        private System.Windows.Forms.Button btn_Dung;
+        private System.Windows.Forms.Button btn_BoQua;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private System.Windows.Forms.DataGridView dataGridView_CauHoi;
         private DevExpress.XtraEditors.SimpleButton btn_deleteNhom;
@@ -486,8 +514,9 @@
         private System.Windows.Forms.DataGridView dataGridView_GoiCauHoi;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private System.Windows.Forms.ComboBox comboBox_GoiCauHoi;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_ThiSinh;
         private System.Windows.Forms.DataGridView dataGridView_ThiSinh;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
     }
 }
 

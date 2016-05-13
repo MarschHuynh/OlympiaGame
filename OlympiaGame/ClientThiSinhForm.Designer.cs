@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.rtb_CauHoi = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lb_soCauDung = new System.Windows.Forms.Label();
+            this.lb_Diem = new System.Windows.Forms.Label();
+            this.lb_tenGame = new System.Windows.Forms.Label();
+            this.lb_ten = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // rtb_CauHoi
@@ -49,49 +49,49 @@
             this.rtb_CauHoi.TabIndex = 0;
             this.rtb_CauHoi.Text = "Đỉnh núi cao nhất Đông Nam Á là đỉnh núi nào ?";
             // 
-            // label1
+            // lb_soCauDung
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Crimson;
-            this.label1.Location = new System.Drawing.Point(624, 364);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 77);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "6/12";
+            this.lb_soCauDung.AutoSize = true;
+            this.lb_soCauDung.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_soCauDung.ForeColor = System.Drawing.Color.Crimson;
+            this.lb_soCauDung.Location = new System.Drawing.Point(618, 364);
+            this.lb_soCauDung.Name = "lb_soCauDung";
+            this.lb_soCauDung.Size = new System.Drawing.Size(197, 77);
+            this.lb_soCauDung.TabIndex = 1;
+            this.lb_soCauDung.Text = "12/12";
             // 
-            // label2
+            // lb_Diem
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Lime;
-            this.label2.Location = new System.Drawing.Point(296, 149);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(206, 116);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "120";
+            this.lb_Diem.AutoSize = true;
+            this.lb_Diem.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Diem.ForeColor = System.Drawing.Color.Lime;
+            this.lb_Diem.Location = new System.Drawing.Point(296, 149);
+            this.lb_Diem.Name = "lb_Diem";
+            this.lb_Diem.Size = new System.Drawing.Size(206, 116);
+            this.lb_Diem.TabIndex = 2;
+            this.lb_Diem.Text = "120";
             // 
-            // label3
+            // lb_tenGame
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Salmon;
-            this.label3.Location = new System.Drawing.Point(12, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(247, 58);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Khởi Động";
+            this.lb_tenGame.AutoSize = true;
+            this.lb_tenGame.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_tenGame.ForeColor = System.Drawing.Color.Salmon;
+            this.lb_tenGame.Location = new System.Drawing.Point(12, 9);
+            this.lb_tenGame.Name = "lb_tenGame";
+            this.lb_tenGame.Size = new System.Drawing.Size(247, 58);
+            this.lb_tenGame.TabIndex = 3;
+            this.lb_tenGame.Text = "Khởi Động";
             // 
-            // label4
+            // lb_ten
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(502, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(284, 45);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Huỳnh Tú Thiên";
+            this.lb_ten.AutoSize = true;
+            this.lb_ten.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_ten.ForeColor = System.Drawing.Color.White;
+            this.lb_ten.Location = new System.Drawing.Point(502, 20);
+            this.lb_ten.Name = "lb_ten";
+            this.lb_ten.Size = new System.Drawing.Size(284, 45);
+            this.lb_ten.TabIndex = 4;
+            this.lb_ten.Text = "Huỳnh Tú Thiên";
             // 
             // ClientThiSinhForm
             // 
@@ -100,17 +100,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 479);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lb_ten);
+            this.Controls.Add(this.lb_tenGame);
+            this.Controls.Add(this.lb_Diem);
+            this.Controls.Add(this.lb_soCauDung);
             this.Controls.Add(this.rtb_CauHoi);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ClientThiSinhForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thí Sinh";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClientThiSinhForm_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClientThiSinhForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,9 +119,9 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox rtb_CauHoi;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lb_soCauDung;
+        private System.Windows.Forms.Label lb_Diem;
+        private System.Windows.Forms.Label lb_tenGame;
+        private System.Windows.Forms.Label lb_ten;
     }
 }
